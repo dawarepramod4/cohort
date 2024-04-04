@@ -8,7 +8,7 @@ function App() {
 
     return (
         <>
-            <div className="flex justify-between hover:flex-col">
+            <div className="grid  sm:grid-cols-3 md:grid-cols-5">
                 <div>dfdds</div>
                 <div>dfdds</div>
                 <div>dfdds</div>
