@@ -1,6 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+import RevenueCard from "./components/revenueCard";
 import "./App.css";
 
 function App() {
@@ -8,12 +9,8 @@ function App() {
 
     return (
         <>
-            <div className="grid  sm:grid-cols-3 md:grid-cols-5">
-                <div>dfdds</div>
-                <div>dfdds</div>
-                <div>dfdds</div>
-                <div>dfdds</div>
-                <div>dfdds</div>
+            <div className="grid  grid-cols-1 md:grid-cols-5">
+                <RevenueCard />
             </div>
         </>
     );
