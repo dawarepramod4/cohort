@@ -1,28 +1,38 @@
-import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-function isOnline() {
-    return navigator.onLine;
-}
+function useDebounce(value, delay) {
+    const [debouncedValue, setDebouncedValue] = useState(value);
 
-function useIsOnline() {
-    const [online, setOnline] = React.useState(isOnline());
-    React.useEffect(() => {
-        const handler = () => setOnline(isOnline());
-        window.addEventListener("online", handler);
-        window.addEventListener("offline", handler);
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay);
+
         return () => {
-            window.removeEventListener("online", handler);
-            window.removeEventListener("offline", handler);
+            clearTimeout(id);
         };
-    }, []);
-    return online;
+    }, [value, delay]);
+
+    return debouncedValue;
 }
 
-export default function App() {
-    const online = useIsOnline();
-    if (online) console.log("Online");
-    else console.log("Offline");
+const App = () => {
+    const [inputValue, setInputValue] = useState("");
+    const debouncedValue = useDebounce(inputValue, 1000); // 500 milliseconds debounce delay
 
-    return <h1>am i Online : {online == true ? <>true</> : <>false</>}</h1>;
-}
+    // Use the debouncedValue in your component logic, e.g., trigger a search API call via a useEffect
+
+    return (
+        <>
+            <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Search..."
+            />
+            <>{debouncedValue}</>
+        </>
+    );
+};
+
+export default App;
