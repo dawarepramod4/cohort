@@ -4,13 +4,14 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-    const [count, setCount] = useState(0);
-
-    return (
-        <>
-            <Mycomponent />
-        </>
-    );
+    // const [count, setCount] = useState(0);
+    const [render, setRender] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setRender(false);
+        }, 3000);
+    });
+    return <>{render ? <Mycomponent /> : <div></div>}</>;
 }
 function Mycomponent() {
     useEffect(() => {
