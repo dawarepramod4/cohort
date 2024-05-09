@@ -15,4 +15,4 @@ export default async function Home() {
 async function getData(){
   const response =await axios.get('http://localhost:3000/api/user');
   return response.data;
-}
+} 
