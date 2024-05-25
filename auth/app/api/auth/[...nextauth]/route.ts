@@ -13,12 +13,14 @@ const handler = NextAuth({
         async authorize(credentials: any) {
 
             return {
-                id: "user1"
+                id: "user1",
+                name: "User One",
+                email: credentials.username,
             };
         },
       })
   ],
-secret: process.env.SECRET,
+secret: process.env.NEXTAUTH_SECRET,
 })
 
 
