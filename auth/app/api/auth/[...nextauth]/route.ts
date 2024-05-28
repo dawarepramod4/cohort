@@ -11,6 +11,7 @@ const handler = NextAuth({
           password: { label: 'password', type: 'password', placeholder: '' },
         },
         async authorize(credentials: any) {
+        console.log(credentials);
 
             return {
                 id: "user1",
@@ -21,6 +22,14 @@ const handler = NextAuth({
       })
   ],
 secret: process.env.NEXTAUTH_SECRET,
+callbacks: {
+  jwt: async ({token, user, account, profile, isNewUser}) => {
+    console.log(token);
+    
+    return token
+  
+  }
+}
 })
 
 
